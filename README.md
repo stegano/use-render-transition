@@ -46,6 +46,8 @@ export const App = () => {
 ```
 Demo: https://stackblitz.com/edit/stackblitz-starters-uv8yjs
 
+## Advanced features
+
 ### Sharing Render Data 
 Without state management libraries like Redux, it is possible to share data and rendering state among multiple containers(components).
 
@@ -147,8 +149,8 @@ export const App = () => {
 ```
 Demo: https://stackblitz.com/edit/stackblitz-starters-vc1jnu
 
-### DataHandlerExecutorInterceptorList
-The `dataHandlerExecutorInterceptorList` can intercept the execution of `dataHandlerExecutor` enabling you to transform it. This can be beneficial for tasks such as adding logs to track data processing or injecting dummy data for use in Storybook and testing environments.
+### InterceptorList
+The `interceptorList` can intercept the execution of `dataHandlerExecutor` enabling you to transform it. This can be beneficial for tasks such as adding logs to track data processing or injecting dummy data for use in Storybook and testing environments.
 
 ```tsx
 import { useCallback, useEffect } from 'react';
@@ -170,7 +172,7 @@ const Component = () => {
 export const App = ({ children }) => {
   return (
     <TransitionRenderProvider
-      dataHandlerExecutorInterceptorList={[
+      interceptorList={[
         async (_previousInterceptorResult, dataHandlerExecutor, executorId) => {
           if (executorId === greetingId) {
             // The `dataHandlerExecutor` with an executorId value of 'greeting' is not actually executed instead, this provider returns the value 'Hello'.

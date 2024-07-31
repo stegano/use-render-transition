@@ -136,7 +136,7 @@ describe("`useTransitionRender` Testing", () => {
     };
     const component = ReactTestRender.create(
       <TransitionRenderProvider
-        dataHandlerExecutorInterceptorList={[
+        interceptorList={[
           async () => {
             return "Bbb";
           },
@@ -191,7 +191,7 @@ describe("`useTransitionRender` Testing", () => {
     };
     const component = ReactTestRender.create(
       <TransitionRenderProvider
-        dataHandlerExecutorInterceptorList={[
+        interceptorList={[
           async () => {
             await delay(100);
             return "Bbb";
@@ -218,7 +218,7 @@ describe("`useTransitionRender` Testing", () => {
       component.unmount();
     });
   });
-  it("renderSuccess(multiple dataHandlerExecutorInterceptorList)", async () => {
+  it("renderSuccess(multiple interceptorList)", async () => {
     const TestComponent = () => {
       const task = useCallback(
         async () =>
@@ -238,7 +238,7 @@ describe("`useTransitionRender` Testing", () => {
     };
     const component = ReactTestRender.create(
       <TransitionRenderProvider
-        dataHandlerExecutorInterceptorList={[
+        interceptorList={[
           async () => {
             return "B";
           },
@@ -265,7 +265,7 @@ describe("`useTransitionRender` Testing", () => {
     });
   });
 
-  it("renderSuccess(dataHandlerExecutorInterceptorList defaultExecutor)", async () => {
+  it("renderSuccess(interceptorList defaultExecutor)", async () => {
     const TestComponent = () => {
       const [render, handleData] = useTransitionRender<string>({
         default: "test",
@@ -280,7 +280,7 @@ describe("`useTransitionRender` Testing", () => {
 
     const component = ReactTestRender.create(
       <TransitionRenderProvider
-        dataHandlerExecutorInterceptorList={[
+        interceptorList={[
           async (_prev, dataHandlerExecutor) => {
             return dataHandlerExecutor();
           },

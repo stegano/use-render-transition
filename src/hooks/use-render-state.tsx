@@ -54,12 +54,12 @@ const useTransitionRender = <Data extends any = any, DataHandlingError = Error |
   const handleData: DataHandler<Data> = useCallback(
     async (dataHandlerExecutor, executorId?: string) => {
       try {
-        const { getDataHandlerExecutorInterceptorList } = context;
-        const dataHandlerExecutorInterceptorList = getDataHandlerExecutorInterceptorList<Data>();
-        if (dataHandlerExecutorInterceptorList.length > 0) {
+        const { getInterceptorList } = context;
+        const interceptorList = getInterceptorList<Data>();
+        if (interceptorList.length > 0) {
           let previousResult: Data | undefined;
-          for (let i = 0; i < dataHandlerExecutorInterceptorList.length; i += 1) {
-            const dataHandlerExecutorInterceptor = dataHandlerExecutorInterceptorList[i];
+          for (let i = 0; i < interceptorList.length; i += 1) {
+            const dataHandlerExecutorInterceptor = interceptorList[i];
             const evaludatedData = dataHandlerExecutorInterceptor(
               previousResult,
               () => dataHandlerExecutor(store.get(currentHookKey)?.data),
@@ -84,7 +84,7 @@ const useTransitionRender = <Data extends any = any, DataHandlingError = Error |
               previousData: prev?.data,
               status: DataHandlingStatus.SUCCESS,
             }));
-            if (i === dataHandlerExecutorInterceptorList.length - 1) {
+            if (i === interceptorList.length - 1) {
               return await evaludatedData;
             }
           }

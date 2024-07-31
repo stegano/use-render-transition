@@ -6,7 +6,7 @@ import { DataHandlingState } from "../hooks/use-transition-render.interface";
 export const defaultStore = createStore<DataHandlingState<any, any>>();
 
 export const TransitionRenderContext = createContext<Context>({
-  getDataHandlerExecutorInterceptorList: () => {
+  getInterceptorList: () => {
     return [];
   },
   getStroe: () => {
@@ -14,23 +14,17 @@ export const TransitionRenderContext = createContext<Context>({
   },
 });
 
-function TransitionRenderProvider({
-  children,
-  dataHandlerExecutorInterceptorList,
-  store = defaultStore,
-}: Props) {
+function TransitionRenderProvider({ children, interceptorList, store = defaultStore }: Props) {
   const state = useMemo(
     () => ({
-      getDataHandlerExecutorInterceptorList: () => {
-        return dataHandlerExecutorInterceptorList !== undefined
-          ? dataHandlerExecutorInterceptorList
-          : [];
+      getInterceptorList: () => {
+        return interceptorList !== undefined ? interceptorList : [];
       },
       getStroe: () => {
         return store;
       },
     }),
-    [dataHandlerExecutorInterceptorList, store],
+    [interceptorList, store],
   );
   return (
     <TransitionRenderContext.Provider value={state}>{children}</TransitionRenderContext.Provider>

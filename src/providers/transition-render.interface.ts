@@ -14,9 +14,7 @@ export interface DataHandlerExecutorInterceptor<Data extends any = any> {
 }
 
 export interface Context {
-  getDataHandlerExecutorInterceptorList: <
-    Data extends any,
-  >() => DataHandlerExecutorInterceptor<Data>[];
+  getInterceptorList: <Data extends any>() => DataHandlerExecutorInterceptor<Data>[];
   getStroe: <Data extends any, DataHandlingError extends any>() => Store<
     DataHandlingState<Data, DataHandlingError>
   >;
@@ -24,5 +22,5 @@ export interface Context {
 
 export interface Props<Data extends any = any, DataHandlingError = any> extends PropsWithChildren {
   store?: Store<DataHandlingState<Data, DataHandlingError>>;
-  dataHandlerExecutorInterceptorList?: DataHandlerExecutorInterceptor<Data>[];
+  interceptorList?: DataHandlerExecutorInterceptor<Data>[];
 }
