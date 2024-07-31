@@ -46,7 +46,7 @@ export const App = () => {
 ```
 Demo: https://stackblitz.com/edit/stackblitz-starters-uv8yjs
 
-### Share Rendering Data 
+### Sharing Render Data 
 Without state management libraries like Redux, it is possible to share data and rendering state among multiple containers(components).
 
 ```tsx
@@ -187,9 +187,6 @@ export const App = ({ children }) => {
 ```
 Demo: https://stackblitz.com/edit/stackblitz-starters-hfd32h
 
-## Examples
-### Nextjs Todo App with Transition Render Hook(useTransitionRender)
-  * https://github.com/stegano/nextjs-todo-app-with-use-transition-render
 
 ## Contributors ✨
 
